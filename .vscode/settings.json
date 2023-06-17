@@ -1,3 +1,4 @@
 {
-  "Lua.diagnostics.globals": ["screen", "awesome", "tag", "client"]
+  "Lua.diagnostics.globals": ["screen", "awesome", "tag", "client", "“picom”"],
+  "Lua.runtime.unicodeName": true
 }
