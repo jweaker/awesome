@@ -17,6 +17,7 @@ awful.mouse.append_global_mousebindings({
 awful.keyboard.append_global_keybindings({
     awful.key({ modkey, }, "s", hotkeys_popup.show_help,
         { description = "show help", group = "awesome" }),
+    awful.key({}, "Print", function() awful.spawn("flameshot gui") end),
     awful.key({ modkey }, "]", function() volume_widget:inc(5) end),
     awful.key({ modkey }, "[", function() volume_widget:dec(5) end),
     awful.key({ modkey }, "\\", function() volume_widget:toggle() end),
