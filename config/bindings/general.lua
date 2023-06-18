@@ -16,6 +16,12 @@ awful.mouse.append_global_mousebindings({
 awful.keyboard.append_global_keybindings({
     awful.key({ modkey, }, "s", hotkeys_popup.show_help,
         { description = "show help", group = "awesome" }),
+    awful.key({ modkey, }, "d", function() awful.spawn.with_shell("rofi -show drun") end,
+        { description = "drun rofi", group = "launcher" }),
+    awful.key({ modkey, "Control" }, "d", function() awful.spawn.with_shell("rofi -show run") end,
+        { description = "run rofi", group = "launcher" }),
+    awful.key({ modkey }, "e", function() awful.spawn.with_shell("rofi -show window") end,
+        { description = "window rofi", group = "launcher" }),
     awful.key({ modkey, }, "w", function() mymainmenu:show() end,
         { description = "show main menu", group = "awesome" }),
     awful.key({ modkey, "Control" }, "r", awesome.restart,

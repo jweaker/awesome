@@ -12,7 +12,7 @@ tag.connect_signal("request::default_layouts", function()
         awful.layout.suit.fair,
         awful.layout.suit.fair.horizontal,
         awful.layout.suit.spiral.dwindle,
-        awful.layout.suit.max,
+        -- awful.layout.suit.max,
         -- awful.layout.suit.tile.left,
         -- awful.layout.suit.tile.top,
         -- awful.layout.suit.spiral,
@@ -29,7 +29,7 @@ screen.connect_signal("request::wallpaper", function(s)
         screen = s,
         widget = {
             {
-                image     = beautiful.wallpaper,
+                image     = HOME .. "/Pictures/wallpaper.jpg",
                 upscale   = true,
                 downscale = true,
                 widget    = wibox.widget.imagebox,

@@ -1,4 +1,12 @@
 {
-  "Lua.diagnostics.globals": ["screen", "awesome", "tag", "client", "“picom”"],
-  "Lua.runtime.unicodeName": true
+  "Lua.diagnostics.globals": [
+    "screen",
+    "awesome",
+    "tag",
+    "client",
+    "“picom”",
+    "mouse"
+  ],
+  "Lua.runtime.unicodeName": true,
+  "Lua.diagnostics.disable": ["lowercase-global"]
 }

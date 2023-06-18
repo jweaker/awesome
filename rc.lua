@@ -3,6 +3,7 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+HOME = os.getenv("HOME")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -68,10 +69,10 @@ mymainmenu = awful.menu({
     }
 })
 
-mylauncher = awful.widget.launcher({
-    image = beautiful.awesome_icon,
-    menu = mymainmenu
-})
+-- mylauncher = awful.widget.launcher({
+--     image = beautiful.awesome_icon,
+--     menu = mymainmenu
+-- })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -262,10 +263,10 @@ ruled.client.connect_signal("request::rules", function()
     }
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- ruled.client.append_rule {
-    --     rule       = { class = "Firefox"     },
-    --     properties = { screen = 1, tag = "2" }
-    -- }
+    ruled.client.append_rule {
+        rule       = { class = "discord" },
+        properties = { screen = 1, tag = "9" }
+    }
 end)
 -- }}}
 
