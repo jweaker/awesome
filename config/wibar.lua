@@ -8,7 +8,8 @@ mykeyboardlayout         = awful.widget.keyboardlayout()
 
 -- Create a textclock widget
 
-local mytextclock        = wibox.widget.textclock("%a %b %d, %I:%M %p");
+local mytextclock        = wibox.widget.textclock(
+    "<span color=\"#ffffff\" font=\"Noto Sans 10\">%a %b %d, %I:%M %p</span> ");
 mytextclock.halign       = "center";
 local sp                 = wibox.widget.separator()
 sp.orientation           = "vertical"
@@ -58,69 +59,19 @@ screen.connect_signal("request::desktop_decoration", function(s)
         }
     }
 
-    -- Create a tasklist widget
-    -- s.mytasklist = awful.widget.tasklist {
-    --     screen          = s,
-    --     filter          = awful.widget.tasklist.filter.currenttags,
-    --     style           = {
-    --         border_width = 1,
-    --         border_color = '#777777',
-    --         shape        = gears.shape.rounded_bar,
-    --     },
-    --     layout          = {
-    --         spacing        = 10,
-    --         spacing_widget = {
-    --             {
-    --                 forced_width = 5,
-    --                 shape        = gears.shape.circle,
-    --                 widget       = wibox.widget.separator
-    --             },
-    --             valign = 'center',
-    --             halign = 'center',
-    --             widget = wibox.container.place,
-    --         },
-    --         layout         = wibox.layout.flex.horizontal
-    --     },
-    --     -- Notice that there is *NO* wibox.wibox prefix, it is a template,
-    --     -- not a widget instance.
-    --     widget_template = {
-    --         {
-    --             {
-    --                 {
-    --                     {
-    --                         id     = 'icon_role',
-    --                         widget = wibox.widget.imagebox,
-    --                     },
-    --                     margins = 2,
-    --                     widget  = wibox.container.margin,
-    --                 },
-    --                 {
-    --                     id     = 'text_role',
-    --                     widget = wibox.widget.textbox,
-    --                 },
-    --                 layout = wibox.layout.fixed.horizontal,
-    --             },
-    --             left   = 10,
-    --             right  = 10,
-    --             widget = wibox.container.margin
-    --         },
-    --         id     = 'background_role',
-    --         widget = wibox.container.background,
-    --     },
-    -- }
-
     -- Create the wibox
-
 
     s.mywibox = awful.wibar {
         widget = {
             layout = wibox.layout.align.horizontal,
+            expand = "none",
             { -- Left widgets
                 layout = wibox.layout.fixed.horizontal,
                 s.mytaglist,
+                sp,
                 s.mypromptbox,
             },
-            { mytextclock, layout = wibox.container.place },
+            mytextclock,
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 sp,
@@ -129,13 +80,14 @@ screen.connect_signal("request::desktop_decoration", function(s)
                 mykeyboardlayout,
                 sp,
                 volume_widget {
-                    widget_type = "icon",
+                    widget_type = "arc",
                     device = "pulse"
                 },
                 sp,
                 batteryarc_widget {
                     show_current_level = true,
-                    arc_thickness = 2
+                    arc_thickness = 2,
+                    show_notification_mode = "off"
                 },
                 sp,
                 logout_menu_widget(),
