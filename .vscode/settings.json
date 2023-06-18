@@ -5,7 +5,8 @@
     "tag",
     "client",
     "“picom”",
-    "mouse"
+    "mouse",
+    "timer"
   ],
   "Lua.runtime.unicodeName": true,
   "Lua.diagnostics.disable": ["lowercase-global"]

@@ -1,6 +1,30 @@
 local awful              = require("awful")
 local wibox              = require("wibox")
-local gears              = require("gears")
+
+local battery            = require("utils.battery")
+local mybattery          = battery {
+    ac = "AC",
+    adapter = "BAT0",
+    ac_prefix = "AC: ",
+    battery_prefix = "",
+    percent_colors = {
+        { 25,  "red" },
+        { 50,  "orange" },
+        { 999, "green" },
+    },
+    listen = true,
+    timeout = 10,
+    widget_text = "${AC_BAT}${color_on}${percent}%${color_off}",
+    widget_font = "Deja Vu Sans Mono 10",
+    tooltip_text = "Battery ${state}${time_est}\nCapacity: ${capacity_percent}%",
+    alert_threshold = 5,
+    alert_timeout = 0,
+    alert_title = "Low battery !",
+    alert_text = "${AC_BAT}${time_est}",
+    alert_icon = "~/Downloads/low_battery_icon.png",
+    warn_full_battery = true,
+    full_battery_icon = "~/Downloads/full_battery_icon.png",
+}
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout         = awful.widget.keyboardlayout()
@@ -126,6 +150,8 @@ screen.connect_signal("request::desktop_decoration", function(s)
                 mysystray,
                 myseparator,
                 mykeyboardlayout,
+                myseparator,
+                mybattery,
                 myseparator,
                 s.mylayoutbox,
             },
