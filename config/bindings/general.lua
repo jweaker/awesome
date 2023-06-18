@@ -1,6 +1,7 @@
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local menubar = require("menubar")
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 
 -- {{{ Mouse bindings
 awful.mouse.append_global_mousebindings({
@@ -16,6 +17,9 @@ awful.mouse.append_global_mousebindings({
 awful.keyboard.append_global_keybindings({
     awful.key({ modkey, }, "s", hotkeys_popup.show_help,
         { description = "show help", group = "awesome" }),
+    awful.key({ modkey }, "]", function() volume_widget:inc(5) end),
+    awful.key({ modkey }, "[", function() volume_widget:dec(5) end),
+    awful.key({ modkey }, "\\", function() volume_widget:toggle() end),
     awful.key({ modkey, }, "d", function() awful.spawn.with_shell("rofi -show drun") end,
         { description = "drun rofi", group = "launcher" }),
     awful.key({ modkey, "Control" }, "d", function() awful.spawn.with_shell("rofi -show run") end,

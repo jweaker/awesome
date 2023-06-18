@@ -1,31 +1,8 @@
 local awful              = require("awful")
 local wibox              = require("wibox")
-
-local battery            = require("utils.battery")
-local mybattery          = battery {
-    ac = "AC",
-    adapter = "BAT0",
-    ac_prefix = "AC: ",
-    battery_prefix = "",
-    percent_colors = {
-        { 25,  "red" },
-        { 50,  "orange" },
-        { 999, "green" },
-    },
-    listen = true,
-    timeout = 10,
-    widget_text = "${AC_BAT}${color_on}${percent}%${color_off}",
-    widget_font = "Deja Vu Sans Mono 10",
-    tooltip_text = "Battery ${state}${time_est}\nCapacity: ${capacity_percent}%",
-    alert_threshold = 5,
-    alert_timeout = 0,
-    alert_title = "Low battery !",
-    alert_text = "${AC_BAT}${time_est}",
-    alert_icon = "~/Downloads/low_battery_icon.png",
-    warn_full_battery = true,
-    full_battery_icon = "~/Downloads/full_battery_icon.png",
-}
-
+local batteryarc_widget  = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+local volume_widget      = require('awesome-wm-widgets.volume-widget.volume')
+local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 -- Keyboard map indicator and switcher
 mykeyboardlayout         = awful.widget.keyboardlayout()
 
@@ -33,10 +10,10 @@ mykeyboardlayout         = awful.widget.keyboardlayout()
 
 local mytextclock        = wibox.widget.textclock("%a %b %d, %I:%M %p");
 mytextclock.halign       = "center";
-local myseparator        = wibox.widget.separator()
-myseparator.orientation  = "vertical"
-myseparator.forced_width = 20
-myseparator.opacity      = 0
+local sp                 = wibox.widget.separator()
+sp.orientation           = "vertical"
+sp.forced_width          = 10
+sp.opacity               = 0
 local mysystray          = wibox.widget.systray();
 mysystray.base_size      = 20;
 
@@ -146,13 +123,23 @@ screen.connect_signal("request::desktop_decoration", function(s)
             { mytextclock, layout = wibox.container.place },
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
-                myseparator,
+                sp,
                 mysystray,
-                myseparator,
+                sp,
                 mykeyboardlayout,
-                myseparator,
-                mybattery,
-                myseparator,
+                sp,
+                volume_widget {
+                    widget_type = "icon",
+                    device = "pulse"
+                },
+                sp,
+                batteryarc_widget {
+                    show_current_level = true,
+                    arc_thickness = 2
+                },
+                sp,
+                logout_menu_widget(),
+                sp,
                 s.mylayoutbox,
             },
         }
