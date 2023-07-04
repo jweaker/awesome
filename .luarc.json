@@ -3,6 +3,10 @@
         "vim",
         "lvim",
         "reload",
-        "client"
+        "client",
+        "awesome",
+        "mouse",
+        "tag",
+        "screen"
     ]
 }
