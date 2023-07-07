@@ -180,7 +180,7 @@ end)
 
 client.connect_signal("request::default_keybindings", function()
   awful.keyboard.append_client_keybindings({
-    awful.key({ modkey }, "f", function(c)
+    awful.key({ modkey, "Shift" }, "f", function(c)
       c.fullscreen = not c.fullscreen
       c:raise()
     end, { description = "toggle fullscreen", group = "client" }),
