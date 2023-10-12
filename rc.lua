@@ -28,6 +28,7 @@ require("awful.hotkeys_popup.keys")
 awful.spawn.with_shell("picom -b --config ~/.config/awesome/config/picom.conf")
 awful.spawn.with_shell("xfce4-power-manager")
 awful.spawn.with_shell("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+awful.spawn.with_shell("xset r rate 300 30")
 
 naughty.connect_signal("request::display_error", function(message, startup)
 	naughty.notification({
