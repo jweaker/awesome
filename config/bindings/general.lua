@@ -1,7 +1,7 @@
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local menubar = require("menubar")
-local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+local volume_widget = require("awm-widgets.volume-widget.volume")
 
 -- {{{ Mouse bindings
 awful.mouse.append_global_mousebindings({
