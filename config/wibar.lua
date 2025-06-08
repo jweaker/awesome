@@ -2,9 +2,9 @@ local awful              = require("awful")
 local wibox              = require("wibox")
 local gears              = require("gears")
 local naughty            = require("naughty")
-local batteryarc_widget  = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
-local volume_widget      = require('awesome-wm-widgets.volume-widget.volume')
-local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+local batteryarc_widget  = require("awm-widgets.batteryarc-widget.batteryarc")
+local volume_widget      = require('awm-widgets.volume-widget.volume')
+local logout_menu_widget = require("awm-widgets.logout-menu-widget.logout-menu")
 -- Keyboard map indicator and switcher
 mykeyboardlayout         = awful.widget.keyboardlayout()
 -- Create a textclock widget
