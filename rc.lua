@@ -25,9 +25,11 @@ require("awful.hotkeys_popup.keys")
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
-awful.spawn.with_shell("picom -b --config ~/.config/awesome/config/picom.conf")
 awful.spawn.with_shell("xfce4-power-manager")
 awful.spawn.with_shell("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+
+awful.spawn.with_shell("/usr/lib/xfce4/xfconf/xfconfd")
+awful.spawn.with_shell("xfsettingsd")
 
 naughty.connect_signal("request::display_error", function(message, startup)
   naughty.notification({
@@ -43,7 +45,7 @@ end)
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "kitty"
+terminal = "wezterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 

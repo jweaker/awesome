@@ -15,16 +15,15 @@ awful.mouse.append_global_mousebindings({
 
 -- General Awesome keys
 awful.keyboard.append_global_keybindings({
+  
+
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
     { description = "show help", group = "awesome" }),
   awful.key({}, "Print", function() awful.spawn("flameshot gui") end),
+  awful.key({"Shift"}, "Print", function() awful.spawn("flameshot gui --region \"all\" ") end),
   awful.key({ modkey }, "]", function() volume_widget:inc(5) end),
   awful.key({ modkey }, "[", function() volume_widget:dec(5) end),
   awful.key({ modkey }, "\\", function() volume_widget:toggle() end),
-  awful.key({ modkey, }, "d", function() awful.spawn.with_shell("rofi -show drun") end,
-    { description = "drun rofi", group = "launcher" }),
-  awful.key({ modkey, "Control" }, "d", function() awful.spawn.with_shell("rofi -show run") end,
-    { description = "run rofi", group = "launcher" }),
   awful.key({ modkey }, "e", function() awful.spawn.with_shell("rofi -show window") end,
     { description = "window rofi", group = "launcher" }),
   awful.key({ modkey, }, "w", function() mymainmenu:show() end,

@@ -44,6 +44,18 @@ ruled.client.connect_signal("request::rules", function()
     },
     properties = { floating = true },
   })
+  ruled.client.append_rule({
+
+    rule = { class = "zen" }, -- or "zen" depending on the class name
+    properties = {
+        floating = false,
+        maximized = false,
+        maximized_horizontal = false,
+        maximized_vertical = false,
+        size_hints_honor = false
+    }
+
+  })
 
   -- Add titlebars to normal clients and dialogs
   ruled.client.append_rule({
