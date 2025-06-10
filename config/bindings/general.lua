@@ -26,8 +26,6 @@ awful.keyboard.append_global_keybindings({
   awful.key({ modkey }, "\\", function() volume_widget:toggle() end),
   awful.key({ modkey }, "e", function() awful.spawn.with_shell("rofi -show window") end,
     { description = "window rofi", group = "launcher" }),
-  awful.key({ modkey, }, "w", function() mymainmenu:show() end,
-    { description = "show main menu", group = "awesome" }),
   awful.key({ modkey, "Control" }, "r", awesome.restart,
     { description = "reload awesome", group = "awesome" }),
   awful.key({ modkey, "Shift" }, "q", awesome.quit,

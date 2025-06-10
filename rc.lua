@@ -28,6 +28,7 @@ require("awful.hotkeys_popup.keys")
 awful.spawn.with_shell("xfce4-power-manager")
 awful.spawn.with_shell("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
 awful.spawn.with_shell("xset r rate 300 30")
+awful.spawn.with_shell("ulauncher --hide-window")
 
 awful.spawn.with_shell("/usr/lib/xfce4/xfconf/xfconfd")
 awful.spawn.with_shell("xfsettingsd")
