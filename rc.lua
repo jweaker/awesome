@@ -4,6 +4,8 @@
 pcall(require, "luarocks.loader")
 
 HOME = os.getenv("HOME")
+local focus_browser = require("focus_browser")
+_G.focus_browser = focus_browser
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -28,7 +30,7 @@ require("awful.hotkeys_popup.keys")
 awful.spawn.with_shell("xfce4-power-manager")
 awful.spawn.with_shell("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
 awful.spawn.with_shell("xset r rate 300 30")
-awful.spawn.with_shell("ulauncher --hide-window")
+awful.spawn.with_shell("export BROWSER=/var/lib/flatpak/exports/bin/app.zen_browser.zen; ulauncher --hide-window")
 
 awful.spawn.with_shell("/usr/lib/xfce4/xfconf/xfconfd")
 awful.spawn.with_shell("xfsettingsd")
@@ -230,6 +232,16 @@ end)
 -- }}}
 
 require("config.rules")
+-- Focus browser when launched
+client.connect_signal("manage", function(c)
+    if c.class and (c.class:lower():match("zen") or c.class:lower():match("browser")) then
+        c:connect_signal("property::activated", function()
+            if c.activated then
+                c:jump_to()
+            end
+        end)
+    end
+end)
 
 -- {{{ Titlebars
 -- Add a titlebar if titlebars_enabled is set to true in the rules.

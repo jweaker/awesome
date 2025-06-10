@@ -47,13 +47,22 @@ ruled.client.connect_signal("request::rules", function()
   ruled.client.append_rule({
 
     rule = { class = "zen" }, -- or "zen" depending on the class name
-    properties = {
+    properties = { 
         floating = false,
         maximized = false,
         maximized_horizontal = false,
         maximized_vertical = false,
-        size_hints_honor = false
-    }
+        size_hints_honor = false,
+      screen=1,
+      tag="1",
+      switchtotag = true
+    },
+
+    callback = function(c)
+        c:connect_signal("property::activated", function()
+            if c.activated then c:jump_to() end
+        end)
+    end
 
   })
 
@@ -64,9 +73,8 @@ ruled.client.connect_signal("request::rules", function()
     properties = { titlebars_enabled = true },
   })
 
-  -- Set Firefox to always map on the tag named "2" on screen 1.
   ruled.client.append_rule({
-    rule = { class = "discord" },
+    rule = { class = "Telegram" },
     properties = { screen = 1, tag = "9" },
   })
   ruled.client.append_rule({
