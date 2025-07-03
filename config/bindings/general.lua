@@ -2,6 +2,24 @@ local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local menubar = require("menubar")
 local volume_widget = require("awm-widgets.volume-widget.volume")
+local naughty            = require("naughty")
+
+-- Add at the top of general.lua
+local gears = require("gears")
+
+-- Create a focus preservation function
+local function preserve_focus(fn)
+    return function()
+        local c = client.focus  -- Save currently focused client
+        fn()                    -- Execute original function
+        gears.timer.delayed_call(function()
+            if c and c.valid and c:isvisible() then
+                client.focus = c
+                c:raise()
+            end
+        end)
+    end
+end
 
 -- {{{ Mouse bindings
 awful.mouse.append_global_mousebindings({
@@ -16,7 +34,17 @@ awful.mouse.append_global_mousebindings({
 -- General Awesome keys
 awful.keyboard.append_global_keybindings({
   
-
+awful.key({ modkey }, "space", function()
+    awful.spawn.with_shell("xkb-switch -n")  -- Switch to next language
+    -- Optional: Show notification with current language
+    awful.spawn.easy_async("xkb-switch -p", function(out)
+        naughty.notify({
+            text = "Language: " .. out:gsub("\n", ""),
+            timeout = 2,
+            font = "Monospace 11"
+        })
+    end)
+end),
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
     { description = "show help", group = "awesome" }),
   awful.key({}, "Print", function() awful.spawn("flameshot gui") end),

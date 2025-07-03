@@ -3,6 +3,7 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+
 HOME = os.getenv("HOME")
 local focus_browser = require("focus_browser")
 _G.focus_browser = focus_browser
@@ -23,6 +24,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -306,3 +308,5 @@ end)
 client.connect_signal("mouse::enter", function(c)
 	c:activate({ context = "mouse_enter", raise = false })
 end)
+
+naughty.config.defaults.ignore_focus = true
